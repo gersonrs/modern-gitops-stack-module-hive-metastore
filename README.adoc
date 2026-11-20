@@ -1,4 +1,4 @@
-= devops-stack-module-template
+= modern-gitops-stack-module-hive-metastore
 // Document attributes to replace along the document
 // Here you can define variables for something that keeps repeating along the text
 :CHART-DEPENDENCY-1-NAME-chart-version: 1.2.3
@@ -58,21 +58,23 @@ This module must be one of the first ones to be deployed and consequently it nee
 
 The following requirements are needed by this module:
 
-- [[requirement_argocd]] <<requirement_argocd,argocd>> (>= 6)
+- [[requirement_terraform]] <<requirement_terraform,terraform>> (>= 1.9.0)
 
-- [[requirement_null]] <<requirement_null,null>> (>= 3)
+- [[requirement_argocd]] <<requirement_argocd,argocd>> (~> 7.18)
 
-- [[requirement_utils]] <<requirement_utils,utils>> (>= 1)
+- [[requirement_null]] <<requirement_null,null>> (~> 3.3)
+
+- [[requirement_utils]] <<requirement_utils,utils>> (~> 2.7)
 
 === Providers
 
 The following providers are used by this module:
 
-- [[provider_null]] <<provider_null,null>> (>= 3)
+- [[provider_null]] <<provider_null,null>> (3.3.2)
 
-- [[provider_argocd]] <<provider_argocd,argocd>> (>= 6)
+- [[provider_argocd]] <<provider_argocd,argocd>> (7.18.0)
 
-- [[provider_utils]] <<provider_utils,utils>> (>= 1)
+- [[provider_utils]] <<provider_utils,utils>> (2.7.0)
 
 === Resources
 
@@ -230,6 +232,20 @@ Type: `map(string)`
 
 Default: `{}`
 
+==== [[input_namespace_labels]] <<input_namespace_labels,namespace_labels>>
+
+Description: Labels to apply to the destination namespace managed by Argo CD (requires CreateNamespace=true).
+
+Type: `map(string)`
+
+Default:
+[source,json]
+----
+{
+  "istio.io/dataplane-mode": "ambient"
+}
+----
+
 ==== [[input_replicas]] <<input_replicas,replicas>>
 
 Description: Number of replicas for module
@@ -281,9 +297,10 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[requirement_argocd]] <<requirement_argocd,argocd>> |>= 6
-|[[requirement_null]] <<requirement_null,null>> |>= 3
-|[[requirement_utils]] <<requirement_utils,utils>> |>= 1
+|[[requirement_terraform]] <<requirement_terraform,terraform>> |>= 1.9.0
+|[[requirement_argocd]] <<requirement_argocd,argocd>> |~> 7.18
+|[[requirement_null]] <<requirement_null,null>> |~> 3.3
+|[[requirement_utils]] <<requirement_utils,utils>> |~> 2.7
 |===
 
 = Providers
@@ -291,9 +308,9 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_null]] <<provider_null,null>> |>= 3
-|[[provider_argocd]] <<provider_argocd,argocd>> |>= 6
-|[[provider_utils]] <<provider_utils,utils>> |>= 1
+|[[provider_null]] <<provider_null,null>> |3.3.2
+|[[provider_argocd]] <<provider_argocd,argocd>> |7.18.0
+|[[provider_utils]] <<provider_utils,utils>> |2.7.0
 |===
 
 = Resources
@@ -403,6 +420,20 @@ object({
 |IDs of the other modules on which this module depends on.
 |`map(string)`
 |`{}`
+|no
+
+|[[input_namespace_labels]] <<input_namespace_labels,namespace_labels>>
+|Labels to apply to the destination namespace managed by Argo CD (requires CreateNamespace=true).
+|`map(string)`
+|
+
+[source]
+----
+{
+  "istio.io/dataplane-mode": "ambient"
+}
+----
+
 |no
 
 |[[input_replicas]] <<input_replicas,replicas>>
