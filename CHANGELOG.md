@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/compare/v1.2.0...v2.0.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* provider major bumps and a stricter Terraform baseline; consumers must run `terraform init -upgrade`.
+
+### 🚀 New Features
+
+* add namespace_labels variable to all modules ([f98788c](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/commit/f98788c8abc05576d045afab10d91824d6c4fa4b))
+* upgrade charts, providers and Terraform baseline ([#5](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/issues/5)) ([84638f5](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/commit/84638f5319334a2ba675e92fa5992e32c4b02d2a))
+
+
+### 📦 CI Improvements
+
+* run release-please with GITHUB_TOKEN ([#6](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/issues/6)) ([72ab163](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/commit/72ab16312681abdb8e931450a19065ced489e42a))
+
 ## [1.2.0](https://github.com/GersonRS/modern-gitops-stack-module-hive-metastore/compare/v1.1.0...v1.2.0) (2025-02-13)
 
 
