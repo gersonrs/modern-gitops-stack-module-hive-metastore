@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/compare/v2.0.0...v3.0.0) (2026-11-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* the ingress object and its hive-metastore-ingres-tls secret are gone; the host is now served by the Istio gateway.
+
+### 🚀 New Features
+
+* expose Hive Metastore through the Istio gateway instead of Traefik ([#8](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/issues/8)) ([3fae021](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/commit/3fae0215720551f599f474176ba9dbc5bfa93ba8))
+
 ## [2.0.0](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/compare/v1.2.0...v2.0.0) (2026-11-20)
 
 
