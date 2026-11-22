@@ -15,37 +15,10 @@ locals {
       type = "ClusterIP"
       port = 9083
     }
+    # Exposure is handled by the HTTPRoute below, served by the Istio gateway,
+    # so the chart's own Ingress stays disabled.
     ingress = {
-      enabled : true
-      className : "traefik"
-      annotations = {
-        "cert-manager.io/cluster-issuer"                   = "${var.cluster_issuer}"
-        "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
-        "traefik.ingress.kubernetes.io/router.tls"         = "true"
-      }
-      hosts = [
-        {
-          host = local.domain
-          paths = [{
-            path     = "/"
-            pathType = "ImplementationSpecific"
-          }]
-        },
-        {
-          host = local.domain_full
-          paths = [{
-            path     = "/"
-            pathType = "ImplementationSpecific"
-          }]
-        }
-      ]
-      tls = [{
-        secretName = "hive-metastore-ingres-tls"
-        hosts = [
-          local.domain,
-          local.domain_full
-        ]
-      }]
+      enabled = false
     }
     resources = {
       requests = { for k, v in var.resources.requests : k => v if v != null }
@@ -92,6 +65,15 @@ locals {
           storageClass = "standard"
         }
       }
+    }
+  }]
+
+  helm_values_httproute = [{
+    httproute = {
+      enabled           = true
+      host              = local.domain
+      gateway_name      = var.gateway_name
+      gateway_namespace = var.gateway_namespace
     }
   }]
 }
