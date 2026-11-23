@@ -121,6 +121,21 @@ extraEnvVars: ""
 ## @param extraEnvVarsSecret Secret with extra environment variables
 extraEnvVarsSecret: ""
 
+## Modern PostgreSQL JDBC driver override.
+## The image ships postgresql-9.4.1208, which cannot negotiate the
+## scram-sha-256 authentication that PostgreSQL 14+ uses by default (and that
+## PostgreSQL 18 makes mandatory, since md5 was removed). The driver is
+## downloaded into an emptyDir and mounted over the bundled jar.
+jdbcOverride:
+  ## @param jdbcOverride.enabled Replace the bundled PostgreSQL JDBC driver
+  enabled: false
+  ## @param jdbcOverride.jarUrl Source of the replacement driver
+  jarUrl: "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.14/postgresql-42.7.14.jar"
+  ## @param jdbcOverride.bundledJar Path of the bundled driver to replace
+  bundledJar: "/opt/hive/lib/postgresql-9.4.1208.jre7.jar"
+  ## @param jdbcOverride.image Image used to download the driver
+  image: curlimages/curl:latest
+
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Hive pods
 extraVolumeMounts: []
 

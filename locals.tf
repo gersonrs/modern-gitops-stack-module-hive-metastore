@@ -24,6 +24,12 @@ locals {
       requests = { for k, v in var.resources.requests : k => v if v != null }
       limits   = { for k, v in var.resources.limits : k => v if v != null }
     }
+    # The image bundles postgresql-9.4.1208, which cannot negotiate the
+    # scram-sha-256 authentication PostgreSQL 18 requires (md5 was removed),
+    # so a current driver is mounted over the bundled jar.
+    jdbcOverride = {
+      enabled = true
+    }
     connections = {
       database = {
         # password = "hive"
