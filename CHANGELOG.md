@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/compare/v3.0.0...v3.0.1) (2026-11-23)
+
+
+### 🔥 Bug Fixes
+
+* mount a current PostgreSQL JDBC driver over the bundled one ([#10](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/issues/10)) ([e256fc4](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/commit/e256fc4a949bac5518b5ae63cc5ff7a2c9c489d9))
+
 ## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-hive-metastore/compare/v2.0.0...v3.0.0) (2026-11-22)
 
 
